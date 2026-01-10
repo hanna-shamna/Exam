@@ -14,17 +14,23 @@
   <h1>Pachu, you’ve got this 💖</h1>
   <p class="subtitle">Breathe slowly. You’re safe here.</p>
 
-  <!-- Bubu breathing circle -->
-  <div class="breathe-bubu"></div>
-  <p class="breathe-text">Breathe in… Breathe out…</p>
+  <!-- Bubu breathing circle with tap interaction -->
+  <div class="breathe-bubu" onclick="releaseLove()"></div>
+  <p class="breathe-text" id="breatheText">Breathe in…</p>
 
+  <!-- Countdown timer -->
   <div class="timer">
     <h3>Exam Countdown ⏳</h3>
     <p id="countdown"></p>
   </div>
 
+  <!-- Encouragement messages -->
   <button onclick="showMessage()">Tap for encouragement</button>
   <p id="message"></p>
+
+  <!-- Calm button -->
+  <button onclick="calmMode()">I feel anxious</button>
+  <p id="calmMessage"></p>
 
   <a class="link" href="message.html">💌 Message from Hannu</a>
 </div>
@@ -32,3 +38,4 @@
 <script src="script.js"></script>
 </body>
 </html>
+
