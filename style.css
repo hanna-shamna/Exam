@@ -158,3 +158,10 @@ button:active {
   font-size: 0.8rem;
   color: #fff;
 }
+
+.countdown-boxes {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 5px;
+}
+
