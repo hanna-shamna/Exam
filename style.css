@@ -1,0 +1,93 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: #ffd6e8;
+  overflow-x: hidden;
+}
+
+.container {
+  min-height: 100vh;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h1 {
+  color: #ff4d88;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.breathing-circle {
+  width: 120px;
+  height: 120px;
+  background: #ff4d88;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  animation: breathe 6s infinite ease-in-out;
+}
+
+@keyframes breathe {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+button {
+  background: #ff4d88;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 20px;
+  color: white;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+#message {
+  margin-top: 15px;
+  color: #555;
+}
+
+.timer {
+  margin: 20px 0;
+  color: #555;
+}
+
+.note {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.link {
+  margin-top: 30px;
+  text-decoration: none;
+  color: #ff4d88;
+  font-weight: bold;
+}
+
+/* 💕 HEART PARTICLES */
+.hearts::before {
+  content: "💗 💕 💖 💓 💞";
+  position: fixed;
+  top: -10%;
+  width: 100%;
+  text-align: center;
+  font-size: 2rem;
+  animation: fall 8s linear infinite;
+  opacity: 0.3;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(120vh); }
+}
