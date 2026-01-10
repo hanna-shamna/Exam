@@ -23,8 +23,9 @@ const messages = [
 ];
 
 function showMessage() {
+  const msgBox = document.getElementById("message");
   const random = Math.floor(Math.random() * messages.length);
-  document.getElementById("message").innerText = messages[random];
+  msgBox.innerText = messages[random];
 }
 
 // Guided breathing text
@@ -54,19 +55,28 @@ function calmMode() {
     "It’s okay to feel this way. Pause. Breathe. You are safe 🤍";
 }
 
-// Countdown timer (Jan 12 → Jan 21)
-const endDate = new Date("January 21, 2026 23:59:59").getTime();
+// Countdown timer
+const examStart = new Date("January 12, 2026 00:00:00").getTime();
+const examEnd = new Date("January 21, 2026 23:59:59").getTime();
 
-const timer = setInterval(() => {
+const countdown = setInterval(() => {
   const now = new Date().getTime();
-  const distance = endDate - now;
 
-  if (distance < 0) {
-    clearInterval(timer);
+  let distance, status;
+
+  if (now < examStart) {
+    distance = examStart - now;
+    status = "before";
+  } else if (now >= examStart && now <= examEnd) {
+    distance = examEnd - now;
+    status = "during";
+  } else {
+    // Exam finished
     document.getElementById("days").innerText = 0;
     document.getElementById("hours").innerText = 0;
     document.getElementById("minutes").innerText = 0;
     document.getElementById("seconds").innerText = 0;
+    clearInterval(countdown);
     return;
   }
 
@@ -79,4 +89,5 @@ const timer = setInterval(() => {
   document.getElementById("hours").innerText = hours;
   document.getElementById("minutes").innerText = minutes;
   document.getElementById("seconds").innerText = seconds;
+
 }, 1000);
