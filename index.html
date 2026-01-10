@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Pachu 💖</title>
+  <style>
+    /* --- Body & Theme --- */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #ffd6d6;
+      color: #6b0f3b;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* --- Floating hearts --- */
+    .hearts::before {
+      content: "💗 💕 💖 💓 💞";
+      position: fixed;
+      top: -10%;
+      width: 100%;
+      text-align: center;
+      font-size: 2rem;
+      animation: fall 8s linear infinite;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(120vh); }
+    }
+
+    /* --- Title --- */
+    h1 {
+      text-align: center;
+      color: #ff4d88;
+      margin-top: 20px;
+      font-size: 2rem;
+    }
+
+    /* --- Bubu image circle --- */
+    .bubu {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 20px auto;
+      border: 4px solid #ff4d88;
+      box-shadow: 0 0 20px rgba(255,77,136,0.6);
+      background: url('bubu.jpg') center/cover no-repeat;
+      animation: breathe 6s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    /* --- Letter box --- */
+    .letter {
+      background: #ffe3e3;
+      border-radius: 20px;
+      padding: 20px;
+      max-width: 90%;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      text-align: center;
+      overflow: hidden;
+      height: auto;
+      min-height: 120px;
+    }
+
+    /* --- Button --- */
+    button {
+      background: #ff4d88;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    /* --- Mobile adjustments --- */
+    @media (max-width: 480px){
+      .bubu { width: 130px; height: 130px; }
+      h1 { font-size: 1.5rem; }
+      .letter { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hearts"></div>
+
+<h1>For Pachu 💖</h1>
+
+<div class="bubu"></div>
+
+<div class="letter" id="letter">
+  <!-- Messages will appear here gradually -->
+</div>
+
+<button onclick="showNextMessage()">Next message 💌</button>
+
+<script>
+const messages = [
+  "Hey Pachu, I know exams can be stressful…",
+  "But I want you to remember how amazing you are 💖",
+  "Take a deep breath… everything will be okay 🌸",
+  "You’ve worked so hard and I’m proud of you 💕",
+  "Remember to smile, even in tough moments 😊",
+  "Every step you take is progress, never forget that ✨",
+  "Breathe slowly… you are safe and loved 💗",
+  "No matter what happens, I’m always with you 💌",
+  "You are stronger than you think 🌷",
+  "This exam is just a moment… not who you are 🌈",
+  "Believe in yourself, Pachu. You’ve got this 💪",
+  "I hope these words make you feel calm and loved 💖"
+];
+
+let current = 0;
+
+function showNextMessage() {
+  if(current < messages.length){
+    const letter = document.getElementById("letter");
+    const p = document.createElement("p");
+    p.textContent = messages[current];
+    p.style.opacity = 0;
+    letter.appendChild(p);
+
+    // Fade-in effect
+    let op = 0;
+    const fadeIn = setInterval(()=>{
+      op += 0.02;
+      p.style.opacity = op;
+      if(op >= 1) clearInterval(fadeIn);
+    }, 20);
+
+    current++;
+    // Scroll to newest message smoothly
+    letter.scrollTop = letter.scrollHeight;
+  } else {
+    alert("All messages delivered 💕");
+  }
+}
+</script>
+
+</body>
+</html>
