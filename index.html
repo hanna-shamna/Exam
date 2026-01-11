@@ -1,133 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For Pachu 💖</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #ffd6d6;
-      color: #6b0f3b;
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Pachu 💖</title>
 
-    /* Floating hearts */
-    .hearts::before {
-      content: "💗 💕 💖 💓 💞";
-      position: fixed;
-      top: -10%;
-      width: 100%;
-      text-align: center;
-      font-size: 2rem;
-      animation: fall 8s linear infinite;
-      opacity: 0.3;
-      pointer-events: none;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: #ffd6d6;
+  color: #6b0f3b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  overflow-x: hidden;
+}
 
-    @keyframes fall {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(120vh); }
-    }
+h1 {
+  color: #ff4d88;
+  margin: 20px 0;
+}
 
-    h1 {
-      text-align: center;
-      color: #ff4d88;
-      margin-top: 20px;
-      font-size: 2rem;
-    }
+/* Bubu image */
+.bubu {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid #ff4d88;
+  background: url('bubu.jpg') center/cover no-repeat;
+  box-shadow: 0 0 20px rgba(255,77,136,0.6);
+  animation: breathe 6s ease-in-out infinite;
+}
 
-    .bubu {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      overflow: hidden;
-      margin: 20px auto;
-      border: 4px solid #ff4d88;
-      box-shadow: 0 0 20px rgba(255,77,136,0.6);
-      background: url('bubu.jpg') center/cover no-repeat;
-      animation: breathe 6s ease-in-out infinite;
-    }
+@keyframes breathe {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
 
-    @keyframes breathe {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-      100% { transform: scale(1); }
-    }
+/* Timer */
+.timer-box {
+  background: #ff9bbf;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 20px;
+  margin: 20px 0;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
 
-    /* Timer box */
-    .timer-box {
-      background: #ff9bbf;
-      color: white;
-      padding: 15px 20px;
-      border-radius: 20px;
-      font-size: 1rem;
-      font-weight: bold;
-      margin-bottom: 20px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
+/* Notebook paper */
+.notebook {
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      #fff,
+      #fff 28px,
+      #ffd6e8 29px
+    );
+  border-radius: 18px;
+  padding: 22px 20px 22px 30px;
+  max-width: 90%;
+  min-height: 200px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  line-height: 1.8;
+  cursor: pointer;
+  position: relative;
+  transition: 0.4s;
+}
 
-    .letter {
-      background: #ffe3e3;
-      border-radius: 20px;
-      padding: 20px;
-      max-width: 90%;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 20px;
-      text-align: center;
-      min-height: 150px;
-      overflow-y: auto;
-    }
+/* Red margin line */
+.notebook::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #ff6fa3;
+  border-radius: 2px;
+}
 
-    button {
-      background: #ff4d88;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      margin-bottom: 20px;
-    }
+.notebook .hint {
+  text-align: center;
+  color: #ff4d88;
+  font-weight: bold;
+  opacity: 0.8;
+}
 
-    button:active { transform: scale(0.95); }
+.notebook p {
+  margin: 0;
+  animation: fadeIn 0.6s ease;
+}
 
-    @media (max-width: 480px){
-      .bubu { width: 130px; height: 130px; }
-      h1 { font-size: 1.5rem; }
-      .letter { font-size: 0.9rem; }
-      .timer-box { font-size: 0.9rem; }
-    }
-  </style>
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Confetti */
+.confetti {
+  position: fixed;
+  top: -10px;
+  font-size: 20px;
+  animation: fall linear forwards;
+  pointer-events: none;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 1.4rem; }
+  .notebook { font-size: 0.95rem; }
+}
+</style>
 </head>
-<body>
 
-<div class="hearts"></div>
+<body>
 
 <h1>For my Pachuttanz 💖</h1>
 
 <div class="bubu"></div>
 
-<!-- Timer -->
 <div class="timer-box" id="timer">
   We have been together for: 0 days 0h 0m 0s 💕
 </div>
 
-<!-- Static rectangle box -->
-<div class="letter" id="letter">
-  <!-- Messages will appear here -->
+<div class="notebook" id="notebook">
+  <div class="hint">📖 Tap to read, my love 💕</div>
 </div>
-
-<button onclick="showNextMessage()">Next message 💌</button>
 
 <script>
 const messages = [
@@ -137,51 +145,72 @@ const messages = [
   "You’ve worked so hard and I’m proud of you 💕",
   "Remember to smile, even in tough moments 😊",
   "Every step you take is progress, never forget that ✨",
-  "Breathe Slowly, and remember ithilum big you have overcome 💗",
+  "Breathe slowly, and remember ithilum big you have overcome 💗",
   "No matter what happens, hannuttan always with you 💌",
-  "I know you dont realise, but you are stronger than you think 🌷",
+  "I know you don’t realise, but you are stronger than you think 🌷",
   "This exam is just a moment… not who you are",
   "This exam is not going to measure you kettaaaa",
   "Believe in yourself, Pachuttaaaa. You’ve got this 💪",
-  "I love you so muchhhh... and i will be proud of you even if you dont score 80% 💖"
+  "I love you so muchhhh… and I’ll be proud of you no matter what 💖"
 ];
 
-let current = 0;
+let index = 0;
+let revealed = false;
+const notebook = document.getElementById("notebook");
 
-function showNextMessage() {
-  if(current < messages.length){
-    const letter = document.getElementById("letter");
-    const p = document.createElement("p");
-    p.textContent = messages[current];
-    letter.appendChild(p);
+/* Confetti function */
+function showerConfetti() {
+  const emojis = ["💖","💕","💗","💓","✨","🌸"];
+  for (let i = 0; i < 25; i++) {
+    const confetti = document.createElement("div");
+    confetti.className = "confetti";
+    confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    confetti.style.left = Math.random() * 100 + "vw";
+    confetti.style.animationDuration = (2 + Math.random() * 2) + "s";
+    document.body.appendChild(confetti);
 
-    current++;
-    // Scroll to latest message
-    letter.scrollTop = letter.scrollHeight;
-  } else {
-    alert("All messages delivered 💕");
+    setTimeout(() => confetti.remove(), 4000);
   }
 }
 
-// Days together timer
+notebook.addEventListener("click", () => {
+  if (index >= messages.length) {
+    notebook.innerHTML = "<p>💖 All my love is already with you, always 💖</p>";
+    return;
+  }
+
+  if (!revealed) {
+    showerConfetti();
+    setTimeout(() => {
+      notebook.innerHTML = `<p>${messages[index]}</p>`;
+      revealed = true;
+    }, 300);
+  } else {
+    index++;
+    revealed = false;
+    notebook.innerHTML = `<div class="hint">📖 Tap to read the next one 💌</div>`;
+  }
+});
+
+/* Timer */
 const startDate = new Date("November 29, 2024 00:00:00").getTime();
 const timerDiv = document.getElementById("timer");
 
 function updateTimer() {
-  const now = new Date().getTime();
+  const now = Date.now();
   let diff = now - startDate;
 
-  const days = Math.floor(diff / (1000*60*60*24));
-  const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-  const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
-  const seconds = Math.floor((diff % (1000*60)) / 1000);
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
 
-  timerDiv.textContent = `We have been together for: ${days} days ${hours}h ${minutes}m ${seconds}s 💕`;
+  timerDiv.textContent =
+    `We have been together for: ${days} days ${hours}h ${minutes}m ${seconds}s 💕`;
 }
 
-// Update every second
 setInterval(updateTimer, 1000);
-updateTimer(); // Initial call
+updateTimer();
 </script>
 
 </body>
