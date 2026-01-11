@@ -63,7 +63,7 @@ h1 {
   border-radius: 18px;
   padding: 22px 20px 22px 30px;
   max-width: 90%;
-  min-height: 200px;
+  min-height: 220px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.18);
   line-height: 1.8;
   cursor: pointer;
@@ -91,12 +91,12 @@ h1 {
 }
 
 .notebook p {
-  margin: 0;
-  animation: fadeIn 0.6s ease;
+  margin: 0 0 10px 0;
+  animation: fadeIn 0.8s ease;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -125,7 +125,7 @@ h1 {
 
 <body>
 
-<h1>For my Pachuttanz 💖</h1>
+<h1>ALL THE BEST BUBUTTANZZ 💖</h1>
 
 <div class="bubu"></div>
 
@@ -134,7 +134,7 @@ h1 {
 </div>
 
 <div class="notebook" id="notebook">
-  <div class="hint">📖 Tap to read, my love 💕</div>
+  <div class="hint">📖 Tap once to reveal everything 💕</div>
 </div>
 
 <script>
@@ -154,42 +154,37 @@ const messages = [
   "I love you so muchhhh… and I’ll be proud of you no matter what 💖"
 ];
 
-let index = 0;
-let revealed = false;
 const notebook = document.getElementById("notebook");
+let revealed = false;
 
 /* Confetti function */
 function showerConfetti() {
   const emojis = ["💖","💕","💗","💓","✨","🌸"];
-  for (let i = 0; i < 25; i++) {
+  for (let i = 0; i < 30; i++) {
     const confetti = document.createElement("div");
     confetti.className = "confetti";
     confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
     confetti.style.left = Math.random() * 100 + "vw";
     confetti.style.animationDuration = (2 + Math.random() * 2) + "s";
     document.body.appendChild(confetti);
-
     setTimeout(() => confetti.remove(), 4000);
   }
 }
 
 notebook.addEventListener("click", () => {
-  if (index >= messages.length) {
-    notebook.innerHTML = "<p>💖 All my love is already with you, always 💖</p>";
-    return;
-  }
+  if (revealed) return;
 
-  if (!revealed) {
-    showerConfetti();
-    setTimeout(() => {
-      notebook.innerHTML = `<p>${messages[index]}</p>`;
-      revealed = true;
-    }, 300);
-  } else {
-    index++;
-    revealed = false;
-    notebook.innerHTML = `<div class="hint">📖 Tap to read the next one 💌</div>`;
-  }
+  revealed = true;
+  showerConfetti();
+
+  setTimeout(() => {
+    notebook.innerHTML = "";
+    messages.forEach(msg => {
+      const p = document.createElement("p");
+      p.textContent = msg;
+      notebook.appendChild(p);
+    });
+  }, 300);
 });
 
 /* Timer */
