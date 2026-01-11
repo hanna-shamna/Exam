@@ -21,6 +21,39 @@ body {
 h1 {
   color: #ff4d88;
   margin: 20px 0;
+  text-align: center;
+}
+
+/* Side decorations */
+.side {
+  position: fixed;
+  top: 0;
+  width: 50px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 22px;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.side.left { left: 5px; }
+.side.right { right: 5px; }
+
+.side span {
+  animation: float 6s ease-in-out infinite;
+}
+
+.side span:nth-child(odd) {
+  animation-duration: 7s;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
 }
 
 /* Bubu image */
@@ -49,9 +82,10 @@ h1 {
   margin: 20px 0;
   font-weight: bold;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  text-align: center;
 }
 
-/* Notebook paper */
+/* Notebook */
 .notebook {
   background:
     repeating-linear-gradient(
@@ -63,12 +97,11 @@ h1 {
   border-radius: 18px;
   padding: 22px 20px 22px 30px;
   max-width: 90%;
-  min-height: 220px;
+  min-height: 240px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.18);
   line-height: 1.8;
   cursor: pointer;
   position: relative;
-  transition: 0.4s;
 }
 
 /* Red margin line */
@@ -87,11 +120,11 @@ h1 {
   text-align: center;
   color: #ff4d88;
   font-weight: bold;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .notebook p {
-  margin: 0 0 10px 0;
+  margin: 0 0 10px;
   animation: fadeIn 0.8s ease;
 }
 
@@ -118,14 +151,31 @@ h1 {
 
 @media (max-width: 480px) {
   h1 { font-size: 1.4rem; }
-  .notebook { font-size: 0.95rem; }
+  .side { display: none; } /* hide sides on small screens */
 }
 </style>
 </head>
 
 <body>
 
-<h1>ALL THE BEST BUBUTTANZZ 💖</h1>
+<!-- Side decorations -->
+<div class="side left">
+  <span>💖</span>
+  <span>🌸</span>
+  <span>✨</span>
+  <span>💕</span>
+  <span>🧸</span>
+</div>
+
+<div class="side right">
+  <span>💗</span>
+  <span>🌷</span>
+  <span>⭐</span>
+  <span>💞</span>
+  <span>🎀</span>
+</div>
+
+<h1>For my Pachuttanz 💖</h1>
 
 <div class="bubu"></div>
 
@@ -134,7 +184,7 @@ h1 {
 </div>
 
 <div class="notebook" id="notebook">
-  <div class="hint">📖 Tap once for your message 💕</div>
+  <div class="hint">📖 Tap once to reveal everything 💕</div>
 </div>
 
 <script>
@@ -157,24 +207,24 @@ const messages = [
 const notebook = document.getElementById("notebook");
 let revealed = false;
 
-/* Confetti function */
+/* Confetti */
 function showerConfetti() {
   const emojis = ["💖","💕","💗","💓","✨","🌸"];
   for (let i = 0; i < 30; i++) {
-    const confetti = document.createElement("div");
-    confetti.className = "confetti";
-    confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-    confetti.style.left = Math.random() * 100 + "vw";
-    confetti.style.animationDuration = (2 + Math.random() * 2) + "s";
-    document.body.appendChild(confetti);
-    setTimeout(() => confetti.remove(), 4000);
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.animationDuration = (2 + Math.random() * 2) + "s";
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 4000);
   }
 }
 
 notebook.addEventListener("click", () => {
   if (revealed) return;
-
   revealed = true;
+
   showerConfetti();
 
   setTimeout(() => {
@@ -192,16 +242,12 @@ const startDate = new Date("November 29, 2024 00:00:00").getTime();
 const timerDiv = document.getElementById("timer");
 
 function updateTimer() {
-  const now = Date.now();
-  let diff = now - startDate;
-
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
-
-  timerDiv.textContent =
-    `We have been together for: ${days} days ${hours}h ${minutes}m ${seconds}s 💕`;
+  const diff = Date.now() - startDate;
+  const d = Math.floor(diff / (1000*60*60*24));
+  const h = Math.floor((diff / (1000*60*60)) % 24);
+  const m = Math.floor((diff / (1000*60)) % 60);
+  const s = Math.floor((diff / 1000) % 60);
+  timerDiv.textContent = `We have been together for: ${d} days ${h}h ${m}m ${s}s 💕`;
 }
 
 setInterval(updateTimer, 1000);
@@ -210,3 +256,4 @@ updateTimer();
 
 </body>
 </html>
+
